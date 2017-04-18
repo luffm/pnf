@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+
+<head>
+  <title>Point and Figure</title>
+
+  <style type="text/css">
+    div {
+      font-size: 0;
+    }
+    span {
+      display: inline-block;
+      border-left:0px;
+      border-right:1px solid lightgrey;
+      border-top:1px solid lightgrey;
+      border-bottom:0px;
+/*
+      border-spacing: 0px;
+      border-collapse: separate;
+      padding:0;
+      margin:0;
+      word-spacing: -1;
+*/
+      width: 20px;
+      line-height: 20px;
+      text-align: center;
+      font-size: 8pt;
+    }
+  </style>
+
+<body>
+
+<div>
+<span>O</span>
+<span>X</span>
+<span>O</span>
+<span>X</span>
+<span>O</span>
+<span>X</span>
+<span>O</span>
+<span>X</span>
+<span>O</span>
+<span>X</span>
+<span>O</span>
+<span>X</span>
+<span>O</span>
+<span>X</span>
+<span>O</span>
+<span>X</span>
+<span>O</span>
+<span>X</span>
+<span>O</span>
+<span>X</span>
+</div>
+<div>
+<span>O</span>
+<span>X</span>
+<span>O</span>
+<span>X</span>
+</div>
+
+
+        <div style="font-size: 12pt;">
+            Select a text file:
+            <input type="file" id="fileInput">
+        </div>
+        <pre id="fileDisplayArea"><pre>
+
+<script>
+window.onload = function() {
+        var fileInput = document.getElementById('fileInput');
+        var fileDisplayArea = document.getElementById('fileDisplayArea');
+
+        fileInput.addEventListener('change', function(e) {
+            var file = fileInput.files[0];
+            alert(file.type);
+            var textType = /.*/;
+
+            if (file.type.match(textType)) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    fileDisplayArea.innerText = reader.result;
+                    alert(reader.result);
+                }
+
+                reader.readAsText(file);    
+            } else {
+                fileDisplayArea.innerText = "File not supported!"
+            }
+        });
+}
+
+</script>
+
+</body>
+
+</html>
